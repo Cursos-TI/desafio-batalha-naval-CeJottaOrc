@@ -1,40 +1,96 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+#define linha 10
+#define coluna 10
 
-int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+int main(){
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+    //VARIÁVEIS
+int tabuleiro[linha][coluna];
+int contagem = 1;
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
+//HABILIDADES:
 
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
+//CONE
+int cone[3][5] = 
+{
+    {0,0,1,0,0,},
+    {0,1,1,1,0,},
+    {1,1,1,1,1}
+};//POSIÇÃO NO TABULEIRO
+int lin_con = 3;
+int col_con = 1;
 
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
+//OCTA
+int octa[3][5] = 
+{
+    {0,0,1,0,0,},
+    {0,1,1,1,0,},
+    {0,0,1,0,0}
+};//POSIÇÃO NO TABULEIRO
+int lin_octa = 0;
+int col_octa = 5;
 
-    return 0;
+//CRUZ
+int cruz[3][5] = 
+{
+    {0,0,1,0,0,},
+    {1,1,1,1,1,},
+    {0,0,1,0,0}
+};//POSIÇÃO NO TABULEIRO
+int lin_cruz = 7;
+int col_cruz = 4;
+
+//CRIAÇÃO DAS MATRIZES:
+
+//TABULEIRO
+for(int i = 0; i < linha; i++)
+{
+    for (int j = 0; j < coluna; j++)
+    {
+        tabuleiro[i][j] = 0;
+    }
+}
+//CONE
+for (int i = 0; i < 3;i++)
+{
+    for (int j = 0; j < 5;j++)
+    {
+        tabuleiro[lin_con + i][col_con + j] = cone [i][j];
+    }
+}
+
+//OCTA
+for (int i = 0; i < 3;i++)
+{
+    for (int j = 0; j < 5;j++)
+    {
+        tabuleiro[lin_octa + i][col_octa + j] = octa [i][j];
+    }
+}
+
+//CRUZ
+for (int i = 0; i < 3;i++)
+{
+    for (int j = 0; j < 5;j++)
+    {
+        tabuleiro[lin_cruz + i][col_cruz + j] = cruz [i][j];
+    }
+}
+
+//EXIBIR TABULEIRO
+
+//LETRAS QUE REPRESENTAM AS COLUNAS
+printf ("    A B C D E F G H I J\n");
+
+
+for (int i = 0; i < linha; i++)
+{
+    printf("%2i. ", contagem++);
+    for (int j = 0; j < coluna; j++)
+    {
+        printf("%i ", tabuleiro[i][j]);
+    }
+    printf("\n");
+}
 }
